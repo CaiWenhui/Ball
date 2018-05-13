@@ -1,37 +1,92 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/CaiWenhui/Ball/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>小球测验</title>
+<script>
+        function test_ball()
+        {
+            var s=document.getElementById("s_num").value;
+            var n=document.getElementById("n_num").value;
+            
+            var s_number = eval(s);
+            var n_number = eval(n);
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+            var arrays = new Array();
 
-### Markdown
+            for (var i = 0; i <= s_number; ++i)
+            {
+                arrays[i] = new Array();
+            }
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+            for(var i = 0; i <= n_number; ++i)
+            {
+                arrays[0][i] = 0;
+            }
 
-```markdown
-Syntax highlighted code block
+            console.log("abc");
 
-# Header 1
-## Header 2
-### Header 3
+            for (var i = 0; i <= s_number; ++i)
+            {
+                arrays[i][0] = 0;
+            }
 
-- Bulleted
-- List
+            for(var row = 1; row <= s_number; ++row)
+            {
+                var sum = 0;
+                for(var col = 1; col <= n_number; ++col)
+                {
+                    sum += arrays[row - 1][col - 1];
+                    arrays[row][col] = sum + col;
+                }
+            }
 
-1. Numbered
-2. List
+            var floor = arrays[s_number][n_number];
 
-**Bold** and _Italic_ and `Code` text
+            var floor_text = document.getElementById("floor_num");
+            floor_text.value = floor;
+        }
+</script>
+</head>
 
-[Link](url) and ![Image](src)
-```
+<body bgcolor = "#2B3137">
+<h1 align = "center"><font color="#FFFFFF">小球测验</font></h1>
+<h4 align = "center"><font color="#FFFFFF">在下列框内填入小球的数目以及抛球次数等信息</font></h4>
+<h4 align = "center"><font color="#FFFFFF">我们会为您求出该条件下小球可测量范围！</font></h4>
+</br>
+</br>
+</br>
+<form> 
+        <table width="300" border="1" align="center" style="border:transparent; background-color: white; padding: 20px; border-radius:25px">
+            <tr>
+                <td style="font-size: 10px"><font color="#586069">小球数目</font></td>
+            </tr>
+            <tr>
+                <td><input id="s_num" type=text placeholder="请输入小球数目" style="padding: 7px"/></td>
+            </tr>
+            <tr>
+                <td style="font-size: 10px"><font color="#586069">抛球次数</font></td>
+            </tr>
+            <tr>
+                <td><input id="n_num" type=text placeholder="请输入抛球次数" style="padding: 7px"/></td>
+            </tr>
+            <tr>
+                <td style="font-size: 10px"><font color="#586069">可测量楼层数</font></td>
+            </tr>
+            <tr>
+                <td><input id="floor_num" type=text style="padding: 7px"/></td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>    
+</form>
+<div align="center">
+<button ondblclick="test_ball()">开始测试</button>
+</div>
+</br>
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/CaiWenhui/Ball/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+<div align="center">
+<a href =‘’ align = "center"><font color="#FFFF00">点击此处观看推导过程</font></a>
+</div>
+</body>
+</html>
